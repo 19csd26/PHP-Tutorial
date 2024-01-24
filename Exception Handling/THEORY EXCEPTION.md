@@ -13,6 +13,7 @@ The throw statement allows a user defined function or method to throw an excepti
 If an exception is not caught, a fatal error will occur with an "Uncaught Exception" message.
 
 <h3>Example</h3>
+</pre>
 <?php
 function divide($dividend, $divisor) {
   if($divisor == 0) {
@@ -23,7 +24,7 @@ function divide($dividend, $divisor) {
 
 echo divide(5, 0);
 ?>
-
+</pre>
 # The try...catch Statement
 To avoid the error from the example above, we can use the try...catch statement to catch exceptions and continue the process.
 
@@ -35,6 +36,7 @@ try {
 }
 
 <h3>Example</h3>
+<pre>
 <?php
 function divide($dividend, $divisor) {
   if($divisor == 0) {
@@ -49,3 +51,4 @@ try {
   echo "Unable to divide.";
 }
 ?>
+</pre>
