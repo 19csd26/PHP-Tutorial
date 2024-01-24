@@ -36,7 +36,7 @@ try {
 }
 
 <h3>Example</h3>
-<pre>
+```php
 <?php
 function divide($dividend, $divisor) {
   if($divisor == 0) {
@@ -51,4 +51,4 @@ try {
   echo "Unable to divide.";
 }
 ?>
-</pre>
+```
