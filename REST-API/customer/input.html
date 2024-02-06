@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer API Frontend</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 16px;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Customer API</h1>
+
+    <form id="customerForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter Name" aria-label="Name">
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" placeholder="Enter Email" aria-label="Email">
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" placeholder="Enter Phone" aria-label="Phone">
+
+        <button type="button" onclick="storeCustomer()">Submit</button>
+    </form>
+
+    <div id="output" role="region" aria-live="assertive" aria-atomic="true"></div>
+    <button onclick="resetPage()">Reset</button>
+    <script>
+        function storeCustomer() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+
+            var inputData = {
+                name: name,
+                email: email,
+                phone: phone
+            };
+
+            // Make a POST request to your API
+            fetch('http://localhost/New%20folder/PHP_Learning/PHP-API/customers/create.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(inputData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Display the API response
+                    document.getElementById('output').innerHTML = JSON.stringify(data, null, 2);
+                    document.getElementById('output').focus(); // Focus on the output for screen reader users
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('output').innerHTML = 'Error fetching data';
+                    document.getElementById('output').focus();
+                });
+        }
+        function resetPage() {
+            document.getElementById('customerId').value = '';
+            document.getElementById('output').innerHTML = '';
+        }
+    </script>
+</body>
+
+</html>
